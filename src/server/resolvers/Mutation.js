@@ -1,6 +1,6 @@
 import omitBy from 'lodash/omitBy';
 
-const createPost = async (parent, { authorId, title, content }, { db }) => {
+const createPost = async (parent, { authorId, title, content }, { db, pubsub }) => {
   try {
     const postToSave = {
       authorId,
@@ -10,10 +10,14 @@ const createPost = async (parent, { authorId, title, content }, { db }) => {
 
     const postRef = db.collection('posts').doc();
     await postRef.set(postToSave);
-    return {
+    const post = {
       id: postRef.id,
       ...postToSave,
     };
+
+    pubsub.publish('postAdded', { postAdded: { ...post } });
+
+    return post;
   } catch (e) {
     throw new Error(e.message);
   }

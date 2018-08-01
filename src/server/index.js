@@ -1,8 +1,9 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer, PubSub } from 'graphql-yoga';
 import Admin from 'firebase-admin';
 
 import Mutation from './resolvers/Mutation';
 import Query from './resolvers/Query';
+import Subscription from './resolvers/Subscription';
 // Import here your firestore credentials
 // import credential from './firestore-credentials.json';
 
@@ -13,14 +14,17 @@ db.settings({ timestampsInSnapshots: true });
 const resolvers = {
   Query,
   Mutation,
+  Subscription,
 };
 
+const pubsub = new PubSub();
 const server = new GraphQLServer({
   typeDefs: './src/server/schema.graphql',
   resolvers,
   context: req => ({
     ...req,
     db,
+    pubsub,
   }),
 });
 
