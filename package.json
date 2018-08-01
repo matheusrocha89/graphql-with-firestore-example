@@ -1,0 +1,28 @@
+{
+  "name": "graphql-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --config nodemon.json"
+  },
+  "author": "Matheus Rocha <matheus.cruzrocha@xing.com>",
+  "license": "MIT",
+  "dependencies": {
+    "firebase-admin": "5.13.1",
+    "graphql-yoga": "1.14.12",
+    "lodash": "4.17.10"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-es2017": "6.24.1",
+    "babel-register": "6.26.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
+    "nodemon": "1.18.3"
+  }
+}
